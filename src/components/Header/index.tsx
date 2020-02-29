@@ -60,18 +60,11 @@ const Header: React.FC<Props> = props => {
 
     function updateMovies(search: string) {
         setInputVal(search)
-        props.setMovies(props.movies.filter((movie:any)=>movie.title.toLowerCase().includes(search)))
+        props.setMovies(props.movies.filter((movie:any)=>movie.title.toLowerCase().includes(search.toLowerCase())))
     }
 
     return (<AppBar position="static">
         <Toolbar>
-            <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-            >
-                <MenuIcon />
-            </IconButton>
             <Typography variant="h6" noWrap>
                 Movie Search
             </Typography>
@@ -89,35 +82,6 @@ const Header: React.FC<Props> = props => {
                 </div>
             </div>
             <div style={{flexGrow: 1}}/>
-            <div>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <IconButton aria-label="show 17 new notifications" color="inherit">
-                    <Badge badgeContent={17} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <IconButton
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-            </div>
-            <div>
-                <IconButton
-                    aria-label="show more"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <MoreIcon />
-                </IconButton>
-            </div>
         </Toolbar>
     </AppBar>)
 };

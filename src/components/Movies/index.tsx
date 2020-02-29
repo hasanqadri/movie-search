@@ -11,6 +11,13 @@ type Props = {
     setTempMovies: any
 }
 
+type Movie = {
+    imdbID: string
+    image: string
+    title: string
+    year: string
+}
+
 const Movies: React.FC<Props> = props => {
 
     useEffect(() => {
