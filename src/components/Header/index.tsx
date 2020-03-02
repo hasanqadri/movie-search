@@ -3,19 +3,19 @@ import {AppBar, createStyles, fade, Theme} from '@material-ui/core'
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import {More as MoreIcon, Menu as MenuIcon, Search as SearchIcon, Mail as MailIcon, Notifications as NotificationsIcon, AccountCircle} from '@material-ui/icons'
+import {Search as SearchIcon} from '@material-ui/icons'
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import Genres from './Genre/index';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         search: {
             position: 'relative',
+            float: 'right',
             borderRadius: theme.shape.borderRadius,
-            backgroundColor: fade(theme.palette.common.white, 0.15),
+            backgroundColor: fade(theme.palette.common.black, 0.15),
             '&:hover': {
-                backgroundColor: fade(theme.palette.common.white, 0.25),
+                backgroundColor: fade(theme.palette.common.black, 0.25),
             },
             marginRight: theme.spacing(2),
             marginLeft: 0,
@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
                 marginLeft: theme.spacing(3),
                 width: 'auto',
             },
+            top: '30px',
+
         },
         searchIcon: {
             width: theme.spacing(7),
@@ -45,6 +47,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: 200,
             },
         },
+        title: {
+            fontFamily: "Arial Black",
+        },
     })
 );
 
@@ -63,25 +68,31 @@ const Header: React.FC<Props> = props => {
         props.setMovies(props.movies.filter((movie:any)=>movie.title.toLowerCase().includes(search.toLowerCase())))
     }
 
-    return (<AppBar position="static">
+    return (<AppBar position="static"  style={{ background: '#A9A9A9' }}>
         <Toolbar>
-            <Typography variant="h6" noWrap>
-                Movie Search
+            <Typography variant="h3" noWrap>
+                <div className={styles.title} style={{color: '#000000'}}>
+                Search <br />
+                <div>Results</div>
+                </div>
             </Typography>
             <div>
                 <div className={styles.search}>
                     <SearchIcon className={styles.searchIcon}/>
-                <InputBase placeholder="Search…"
-                           classes={{
-                               root: styles.inputRoot,
-                               input: styles.inputInput,
-                           }}
-                           onChange={e => updateMovies(e.target.value)}
-                           value={inputVal}
-                           inputProps={{ 'aria-label': 'search' }}/>
+                    <InputBase placeholder="Search…"
+                               classes={{
+                                   root: styles.inputRoot,
+                                   input: styles.inputInput,
+                               }}
+                               onChange={e => updateMovies(e.target.value)}
+                               value={inputVal}
+                               inputProps={{ 'aria-label': 'search' }}/>
                 </div>
             </div>
             <div style={{flexGrow: 1}}/>
+            <div>
+                <Genres />
+            </div>
         </Toolbar>
     </AppBar>)
 };

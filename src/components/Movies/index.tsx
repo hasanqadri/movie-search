@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
+
 import {CircularProgress} from "@material-ui/core";
 import Movie from './Movie/index';
 import './style.css'
 const API_KEY = '8028ed55';
-const series = ['avengers', 'fast and furious', 'harry potter'];
+const series = ['star wars', 'avengers', 'harry potter'];
 
 type Props = {
     movies: any
@@ -17,6 +18,7 @@ type Movie = {
     title: string
     year: string
 }
+//var InfiniteScroll = require('infinite-scroll');
 
 const Movies: React.FC<Props> = props => {
 
@@ -40,6 +42,12 @@ const Movies: React.FC<Props> = props => {
         })
 
     }, []);
+
+    /**
+    var infScroll = new InfiniteScroll( '.container', {
+        // options...
+    });
+    **/
 
     if (props.movies.length===0) {
         return <h4>No Results</h4>
