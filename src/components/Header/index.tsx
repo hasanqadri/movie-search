@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import {Search as SearchIcon} from '@material-ui/icons'
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Genres from './Genre/index';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -90,9 +89,6 @@ const Header: React.FC<Props> = props => {
                 </div>
             </div>
             <div style={{flexGrow: 1}}/>
-            <div>
-                <Genres />
-            </div>
         </Toolbar>
     </AppBar>)
 };
