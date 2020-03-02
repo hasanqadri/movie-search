@@ -4,7 +4,7 @@ import {CircularProgress} from "@material-ui/core";
 import Movie from './Movie/index';
 import './style.css'
 const API_KEY = '8028ed55';
-const series = ['star wars', 'avengers', 'harry potter'];
+const series = ['star wars', 'lord of the rings', 'avengers', 'harry potter'];
 
 type Props = {
     movies: any
@@ -17,6 +17,7 @@ type Movie = {
     image: string
     title: string
     year: string
+    type: string
 }
 //var InfiniteScroll = require('infinite-scroll');
 
@@ -35,7 +36,8 @@ const Movies: React.FC<Props> = props => {
                     title: movie.Title,
                     year: movie.Year,
                     image: movie.Poster,
-                    imdb: movie.imdbID
+                    imdb: movie.imdbID,
+                    type: movie.Type
             }));
             props.setMovies(updatedMovies);
             props.setTempMovies(updatedMovies)
@@ -65,7 +67,7 @@ const Movies: React.FC<Props> = props => {
         {props.movies.map((movie:any) => {
             console.log(movie);
             //There are potentially duplicate movies returned, so we want to exclude them
-            if (!myDict.has(movie.imdb) && movie.image !== 'N/A') {
+            if (!myDict.has(movie.imdb) && movie.image !== 'N/A' && movie.type === 'movie') {
                 myDict.set(movie.imdb, movie);
                 console.log(movie.imdb);
                 //Display movies
@@ -74,6 +76,7 @@ const Movies: React.FC<Props> = props => {
                     title={movie.title}
                     year={movie.year}
                     image={movie.image}
+                    type={movie.type}
                 />
             }
             return false

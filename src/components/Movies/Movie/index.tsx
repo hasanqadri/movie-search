@@ -5,6 +5,7 @@ type Props = {
     title: string
     year: string
     image: string
+    type: string
 }
 
 const Movie: React.FC<Props> = props => {
